@@ -1,0 +1,76 @@
+<odoo>
+  <!-- Action -->
+  <record id="action_sms_student" model="ir.actions.act_window">
+    <field name="name">Students</field>
+    <field name="res_model">sms.student</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <!-- List -->
+  <record id="view_sms_student_list" model="ir.ui.view">
+    <field name="name">sms.student.list</field>
+    <field name="model">sms.student</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="email"/>
+        <field name="roll_no"/>
+        <field name="department"/>
+        <field name="course_count" string="Courses"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- Form (two columns + colored tags + Create Course button) -->
+  <record id="view_sms_student_form" model="ir.ui.view">
+    <field name="name">sms.student.form</field>
+    <field name="model">sms.student</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button name="action_show_enrolled_courses"
+                  type="object"
+                  string="Enrolled Courses"
+                  class="oe_stat_button"
+                  icon="fa-book"/>
+          <field name="course_count" widget="statinfo" string="Courses"/>
+        </header>
+
+        <sheet>
+          <!-- Two-column layout -->
+          <group>
+            <group>
+              <field name="name"/>
+              <field name="email"/>
+            </group>
+            <group>
+              <field name="roll_no" string="Roll No"/>
+              <field name="department"/>
+            </group>
+          </group>
+
+          <group string="Enrolled Courses">
+            <p class="text-muted" style="margin:0 0 6px 0;">
+              Select an existing course. To add a new one, click <b>Create Course</b> below.
+            </p>
+
+            <!-- Colored chips via CSS class -->
+            <field name="course_ids"
+                   widget="many2many_tags"
+                   placeholder="Search course…"
+                   options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True}"
+                   class="enrolled-tags"/>
+
+            <button name="action_quick_create_course"
+                    type="object"
+                    string="Create Course"
+                    class="btn-secondary"
+                    style="margin-top:6px;"/>
+          </group>
+        </sheet>
+
+        <chatter/>
+      </form>
+    </field>
+  </record>
+</odoo>

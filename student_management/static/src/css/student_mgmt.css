@@ -1,0 +1,7 @@
+/* Color the many2many tag chips in the Student form */
+.o_form_view .enrolled-tags .o_tag {
+  background-color: #4CAF50 !important; /* green */
+  color: #fff !important;
+  font-weight: 500;
+  border-radius: 12px;
+}

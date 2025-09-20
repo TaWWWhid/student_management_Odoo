@@ -1,0 +1,9 @@
+<odoo>
+  <menuitem id="menu_student_management_root" name="Student Management" sequence="10"/>
+
+  <menuitem id="menu_sms_student" name="Students"
+            parent="menu_student_management_root" action="action_sms_student" sequence="10"/>
+
+  <menuitem id="menu_sms_course" name="Courses"
+            parent="menu_student_management_root" action="action_sms_course" sequence="20"/>
+</odoo>
